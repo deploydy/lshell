@@ -86,4 +86,4 @@ rm -rf ~/lshell
 * **Storage:** 32 GB or more for comfortable system use
 
 # Once installed, do this
-Press Win + S and Click and select the panel position and your city.
+Press Win + S and select the panel position and your city.
