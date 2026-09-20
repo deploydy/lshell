@@ -78,14 +78,11 @@ rm -rf ~/lshell
 ```
 
 # System Requirements
+
 ● OS: Arch Linux (Arch-based)
-
 ● GPU: Intel, AMD, or Nvidia with native Wayland support
-
 ● RAM: 2 GB minimum (4 GB recommended)
-
 ● CPU: Any modern dual-core processor
-
 ● Storage: 32 GB or more for comfortable system use
 
 # Once installed, do this
