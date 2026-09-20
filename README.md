@@ -78,10 +78,4 @@ rm -rf ~/lshell
 ```
 
 # Once installed, do this
-Open the terminal and enter the command
-```bash
-nano ~/.config/waybar/config
-```
-Press Ctrl + W and find "timezone" 
-Replace London with your city.
-In the "Pictures" directory, paste the wallpaper file, Press Mod+w and select wallpaper.
+Press Win + S and Click and select the panel position and your city.
