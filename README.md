@@ -78,15 +78,15 @@ rm -rf ~/lshell
 ```
 
 # System Requirements
-** OS: Arch Linux (Arch-based)
+● OS: Arch Linux (Arch-based)
 
-** GPU: Intel, AMD, or Nvidia with native Wayland support
+● GPU: Intel, AMD, or Nvidia with native Wayland support
 
-** RAM: 2 GB minimum (4 GB recommended)
+● RAM: 2 GB minimum (4 GB recommended)
 
-** CPU: Any modern dual-core processor
+● CPU: Any modern dual-core processor
 
-** Storage: 32 GB or more for comfortable system use
+● Storage: 32 GB or more for comfortable system use
 
 # Once installed, do this
 Press Win + S and Click and select the panel position and your city.
