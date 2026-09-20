@@ -1,4 +1,3 @@
-
 window#waybar { 
     background-color: transparent; 
     font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif; 
@@ -37,6 +36,7 @@ window#waybar {
 }
 
 #custom-launcher, 
+#bluetooth,
 #custom-language, 
 #clock.time, 
 #clock.date, 
@@ -63,6 +63,7 @@ window#waybar {
 }
 
 #custom-launcher:hover, 
+#bluetooth:hover,
 #custom-language:hover, 
 #clock.time:hover, 
 #clock.date:hover, 
@@ -93,6 +94,16 @@ window#waybar {
 #custom-spotify:hover {
     background: rgba(125, 207, 255, 0.2);
     border-color: rgba(125, 207, 255, 0.4);
+}
+
+#bluetooth,
+#bluetooth.off,
+#bluetooth.disabled,
+#bluetooth.connected,
+#bluetooth.discoverable,
+#bluetooth.discovering,
+#bluetooth.pairable {
+    color: #ffffff;
 }
 
 #battery.charging, 
