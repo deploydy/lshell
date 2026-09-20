@@ -11,12 +11,26 @@ BASE_CONFIG_TEMPLATE = """{
     "margin-right": 16,
     "margin-bottom": 6,
     "spacing": 0,
-    "modules-left": ["custom/launcher", "sway/workspaces", "hyprland/workspaces", "custom/spotify", "custom/language"],
+    "modules-left": ["custom/launcher", "bluetooth", "sway/workspaces", "hyprland/workspaces", "custom/spotify", "custom/language"],
     "modules-center": ["clock#time", "clock#date"],
     "modules-right": ["pulseaudio", "network", "battery", "custom/power"],
     "custom/launcher": {
         "format": "Apps",
         "on-click": "rofi -show drun"
+    },
+    "bluetooth": {
+        "format": "󰂯  {status}",
+        "format-disabled": "󰂲 off",
+        "format-off": "󰂲 off",
+        "format-connected": "󰂱 {device_alias}",
+        "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+        "format-no-controller": "󰂲 none",
+        "tooltip-format": "{controller_alias}\\t{controller_address}\\n\\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\\t{controller_address}\\n\\n{num_connections} connected\\n\\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\\t{device_address}\\t{device_battery_percentage}%",
+        "on-click": "sh -c 'systemctl is-active --quiet bluetooth || pkexec systemctl start bluetooth; sleep 1; bluetoothctl power on; blueman-manager'",
+        "on-click-right": "sh -c 'pkexec systemctl stop bluetooth'"
     },
     "custom/language": {
         "format": "{}",
@@ -64,7 +78,10 @@ BASE_CONFIG_TEMPLATE = """{
             "headphone": "",
             "default": ["", "", ""]
         },
-        "on-click": "blueman-manager"
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
     "network": {
         "format-wifi": "  {essid}",
@@ -130,6 +147,7 @@ window#waybar {
 }
 
 #custom-launcher, 
+#bluetooth,
 #custom-language, 
 #clock.time, 
 #clock.date, 
@@ -156,6 +174,7 @@ window#waybar {
 }
 
 #custom-launcher:hover, 
+#bluetooth:hover,
 #custom-language:hover, 
 #clock.time:hover, 
 #clock.date:hover, 
@@ -186,6 +205,16 @@ window#waybar {
 #custom-spotify:hover {
     background: rgba(125, 207, 255, 0.2);
     border-color: rgba(125, 207, 255, 0.4);
+}
+
+#bluetooth,
+#bluetooth.off,
+#bluetooth.disabled,
+#bluetooth.connected,
+#bluetooth.discoverable,
+#bluetooth.discovering,
+#bluetooth.pairable {
+    color: #ffffff;
 }
 
 #battery.charging, 
