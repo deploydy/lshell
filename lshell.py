@@ -112,7 +112,7 @@ BASE_CONFIG_TEMPLATE = """{
 STYLE_CONTENT = """
 window#waybar { 
     background-color: transparent; 
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "FontAwesome", "Noto Color Emoji", "Roboto", sans-serif; 
+    font-family: "JetBrainsMono Nerd Font", "Noto Color Emoji", sans-serif;
     font-size: 13px; 
     font-weight: bold; 
     color: #ffffff; 
