@@ -4,7 +4,7 @@ WAYBAR_TARGET = os.path.expanduser("~/.config/waybar")
 
 BASE_CONFIG_TEMPLATE = """{
     "layer": "top",
-    "position": "top",
+    "position": "__POS__",
     "height": 32,
     "margin-top": 6,
     "margin-left": 16,
