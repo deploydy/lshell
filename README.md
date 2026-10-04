@@ -76,7 +76,7 @@ cd ..
 git clone https://aur.archlinux.org/swayfx.git
 cd swayfx
 makepkg -si
-
+cd ..
 fastfetch --gen-config
 rm -rf ~/.config/waybar/config.jsonc
 cd ~
