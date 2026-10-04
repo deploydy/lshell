@@ -19,21 +19,21 @@ BASE_CONFIG_TEMPLATE = """{
         "on-click": "rofi -show drun"
     },
     "bluetooth": {
-        "format": "  {status}",
-        "format-disabled": " off",
-        "format-off": " off",
-        "format-connected": "  {device_alias}",
-        "format-connected-battery": "  {device_alias} {device_battery_percentage}%",
-        "format-no-controller": " none",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "format": "  {status}",
+        "format-disabled": " off",
+        "format-off": " off",
+        "format-connected": "  {device_alias}",
+        "format-connected-battery": "  {device_alias} {device_battery_percentage}%",
+        "format-no-controller": " none",
+        "tooltip-format": "{controller_alias}\\t{controller_address}\\n\\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\\t{controller_address}\\n\\n{num_connections} connected\\n\\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\\t{device_address}\\t{device_battery_percentage}%",
         "on-click": "sh -c 'systemctl is-active --quiet bluetooth || pkexec systemctl start bluetooth; sleep 1; bluetoothctl power on; blueman-manager'",
         "on-click-right": "sh -c 'pkexec systemctl stop bluetooth'"
     },
     "sway/language": {
-        "format": "  {}",
+        "format": "  {}",
         "format-en": "EN",
         "format-ru": "RU",
         "format-uk": "UA",
@@ -54,7 +54,7 @@ BASE_CONFIG_TEMPLATE = """{
         "format": "{name}"
     },
     "custom/spotify": {
-        "format": "  {}",
+        "format": "  {}",
         "escape": true,
         "interval": 1,
         "max-length": 25,
@@ -64,20 +64,20 @@ BASE_CONFIG_TEMPLATE = """{
         "on-scroll-down": "playerctl previous"
     },
     "clock#time": {
-        "format": "  {:%H:%M:%S}",
-        "timezone": "Europe/London",
+        "format": "  {:%H:%M:%S}",
+        "timezone": "__TZ__",
         "interval": 1,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "tooltip-format": "<big>{:%Y %B}</big>\\n<tt><small>{calendar}</small></tt>"
     },
     "clock#date": {
-        "format": "  {:%d %b, %a}"
+        "format": "  {:%d %b, %a}"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": " Muted",
+        "format-muted": " Muted",
         "format-icons": {
-            "headphone": "",
-            "default": ["", "", ""]
+            "headphone": "",
+            "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -85,7 +85,7 @@ BASE_CONFIG_TEMPLATE = """{
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
     "network": {
-        "format-wifi": "  {essid}",
+        "format-wifi": "  {essid}",
         "format-ethernet": "𖧧  {ifname}",
         "format-disconnected": "⚠️ Disconnected",
         "on-click": "kitty -- nmtui"
@@ -97,10 +97,10 @@ BASE_CONFIG_TEMPLATE = """{
             "critical": 15
         },
         "format": "{icon}  {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": ["", "", "", "", ""],
         "on-click": "swaync-client -t -sw"
     },
     "custom/power": {
