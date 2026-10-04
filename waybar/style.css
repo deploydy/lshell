@@ -1,6 +1,6 @@
 window#waybar { 
     background-color: transparent; 
-    font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif; 
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "FontAwesome", "Noto Color Emoji", "Roboto", sans-serif; 
     font-size: 13px; 
     font-weight: bold; 
     color: #ffffff; 
@@ -37,7 +37,7 @@ window#waybar {
 
 #custom-launcher, 
 #bluetooth,
-#custom-language, 
+#language, 
 #clock.time, 
 #clock.date, 
 #pulseaudio, 
@@ -64,7 +64,7 @@ window#waybar {
 
 #custom-launcher:hover, 
 #bluetooth:hover,
-#custom-language:hover, 
+#language:hover, 
 #clock.time:hover, 
 #clock.date:hover, 
 #pulseaudio:hover, 
