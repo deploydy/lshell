@@ -1,6 +1,6 @@
 {
     "layer": "top",
-    "position": "_POS_",
+    "position": "top",
     "height": 32,
     "margin-top": 6,
     "margin-left": 16,
@@ -15,12 +15,12 @@
         "on-click": "rofi -show drun"
     },
     "bluetooth": {
-        "format": "  {status}",
-        "format-disabled": " off",
-        "format-off": " off",
-        "format-connected": "  {device_alias}",
-        "format-connected-battery": "  {device_alias} {device_battery_percentage}%",
-        "format-no-controller": " none",
+        "format": "\uF293  {status}",
+        "format-disabled": "\uF294 off",
+        "format-off": "\uF294 off",
+        "format-connected": "\uF293  {device_alias}",
+        "format-connected-battery": "\uF293  {device_alias} {device_battery_percentage}%",
+        "format-no-controller": "\uF294 none",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -29,7 +29,7 @@
         "on-click-right": "sh -c 'pkexec systemctl stop bluetooth'"
     },
     "sway/language": {
-        "format": "  {}",
+        "format": "\uF11C  {}",
         "format-en": "EN",
         "format-ru": "RU",
         "format-uk": "UA",
@@ -50,7 +50,7 @@
         "format": "{name}"
     },
     "custom/spotify": {
-        "format": "  {}",
+        "format": "\uF001  {}",
         "escape": true,
         "interval": 1,
         "max-length": 25,
@@ -60,20 +60,20 @@
         "on-scroll-down": "playerctl previous"
     },
     "clock#time": {
-        "format": "  {:%H:%M:%S}",
+        "format": "\uF017  {:%H:%M:%S}",
         "timezone": "Europe/London",
         "interval": 1,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "clock#date": {
-        "format": "  {:%d %b, %a}"
+        "format": "\uF073  {:%d %b, %a}"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": " Muted",
+        "format-muted": "\uF058 Muted",
         "format-icons": {
-            "headphone": "",
-            "default": ["", "", ""]
+            "headphone": "\uF025",
+            "default": ["\uF026", "\uF027", "\uF028"]
         },
         "on-click": "pavucontrol",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -81,8 +81,8 @@
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
     "network": {
-        "format-wifi": "  {essid}",
-        "format-ethernet": "𖧧  {ifname}",
+        "format-wifi": "\uF1EB  {essid}",
+        "format-ethernet": "\uF0E4D  {ifname}",
         "format-disconnected": "⚠️ Disconnected",
         "on-click": "kitty -- nmtui"
     },
@@ -93,10 +93,10 @@
             "critical": 15
         },
         "format": "{icon}  {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
+        "format-charging": "\uF1E6 {capacity}%",
+        "format-plugged": "\uF1E6 {capacity}%",
         "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""],
+        "format-icons": ["\uF244", "\uF243", "\uF242", "\uF241", "\uF240"],
         "on-click": "swaync-client -t -sw"
     },
     "custom/power": {
