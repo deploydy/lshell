@@ -68,7 +68,7 @@ Minimalist configuration for SwayFX (Wayland).
 ```bash
 sudo pacman -Syyu
 sudo pacman -S git autotiling swaybg swaync waybar kitty rofi swaylock papirus-icon-theme ttf-fira-code ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-font-awesome noto-fonts-emoji gsimplecal wtype rofi-emoji dolphin bluez bluez-utils blueman nwg-displays fastfetch python python-pip nmap polkit-gnome python-cryptography python-requests python-beautifulsoup4 python-rich
-yay -S waytrogen wlogout
+yay -S waytrogen wlogout grim slurp
 git clone https://aur.archlinux.org/scenefx0.5.git
 cd scenefx0.5
 makepkg -si
