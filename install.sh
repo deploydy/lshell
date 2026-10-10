@@ -91,3 +91,20 @@ echo -e "${GREEN}============================================${NC}"
 echo -e "${GREEN}  Installation completed successfully!${NC}"
 echo -e "${GREEN}============================================${NC}"
 echo ""
+
+while true; do
+    read -rp "Reboot the system now? [y/N]: " REBOOT_CHOICE
+    case "$REBOOT_CHOICE" in
+        [Yy]* )
+            log_info "Rebooting system..."
+            sudo reboot
+            ;;
+        [Nn]* | "" )
+            log_info "Reboot skipped. Please reboot manually later."
+            exit 0
+            ;;
+        * )
+            echo "Please answer 'y' or 'n'."
+            ;;
+    esac
+done
