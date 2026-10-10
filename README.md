@@ -66,23 +66,10 @@ Minimalist configuration for SwayFX (Wayland).
 # Install
 ## Arch Linux
 ```bash
-sudo pacman -Syyu
-sudo pacman -S git autotiling swaybg swaync waybar kitty rofi swaylock papirus-icon-theme ttf-fira-code ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols ttf-font-awesome noto-fonts-emoji gsimplecal wtype rofi-emoji dolphin bluez bluez-utils blueman nwg-displays fastfetch python python-pip nmap polkit-gnome python-cryptography python-requests python-beautifulsoup4 python-rich wl-clipboard
-yay -S waytrogen wlogout grim slurp
-git clone https://aur.archlinux.org/scenefx0.5.git
-cd scenefx0.5
-makepkg -si
-cd ..
-git clone https://aur.archlinux.org/swayfx.git
-cd swayfx
-makepkg -si
-cd ..
-fastfetch --gen-config
-rm -rf ~/.config/waybar/config.jsonc
 cd ~
-git clone https://github.com/deploydy/lshell
-cp -r ~/lshell/* ~/.config/
-rm -rf ~/lshell
+curl -O https://raw.githubusercontent.com/deploydy/lshell/main/install.sh
+chmod +x install.sh
+./install.sh
 ```
 
 # System Requirements
