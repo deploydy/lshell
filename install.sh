@@ -48,7 +48,7 @@ while true; do
 done
 
 # ============================================================
-# UPDATE — same as install, but asks before removing conflicts
+# UPDATE
 # ============================================================
 if [ "$ACTION" = "update" ]; then
 
@@ -76,29 +76,6 @@ if [ "$ACTION" = "update" ]; then
 
     sudo pacman -Su --noconfirm
     log_ok "Packages updated."
-
-    log_info "Updating AUR..."
-    YAY_OUT=$(yay -Sua --noconfirm 2>&1 || true)
-
-    if echo "$YAY_OUT" | grep -qiE "conflict"; then
-        log_warn "AUR conflicts:"
-        echo "$YAY_OUT" | grep -iE "conflict"
-        echo ""
-        read -rp "Remove conflicting AUR packages? [y/N]: " AUR_CHOICE
-        if [[ "$AUR_CHOICE" =~ ^[Yy]$ ]]; then
-            PKGS=$(echo "$YAY_OUT" | grep -oP '^\s*\K[^:]+(?=\s*:)' || true)
-            if [ -n "$PKGS" ]; then
-                log_info "Removing: $PKGS"
-                yay -Rdd --noconfirm $PKGS || true
-                log_ok "Removed."
-            fi
-            log_info "Retrying AUR update..."
-            yay -Sua --noconfirm
-            log_ok "AUR updated."
-        fi
-    else
-        log_ok "AUR updated."
-    fi
 
     echo ""
     echo -e "${GREEN}============================================${NC}"
