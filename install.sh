@@ -10,6 +10,7 @@ NC='\033[0m'
 log_info()  { echo -e "${BLUE}[INFO]${NC} $1"; }
 log_ok()    { echo -e "${GREEN}[OK]${NC} $1"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $1"; }
+log_warn()  { echo -e "${YELLOW}[WARN]${NC} $1"; }
 
 if [ "$EUID" -eq 0 ]; then
     log_error "Do not run this script as root!"
@@ -24,6 +25,92 @@ fi
 if ! command -v yay &> /dev/null; then
     log_error "yay is not installed."
     exit 1
+fi
+
+echo ""
+echo -e "${BLUE}============================================${NC}"
+echo -e "${BLUE}  Select an action:${NC}"
+echo -e "${BLUE}============================================${NC}"
+echo -e "  ${GREEN}1)${NC} Update system"
+echo -e "  ${GREEN}2)${NC} Full installation"
+echo -e "  ${GREEN}3)${NC} Exit"
+echo -e "${BLUE}============================================${NC}"
+echo ""
+
+while true; do
+    read -rp "Your choice [1/2/3]: " CHOICE
+    case "$CHOICE" in
+        1) ACTION="update"; break ;;
+        2) ACTION="install"; break ;;
+        3) log_info "Exiting."; exit 0 ;;
+        *) echo "Enter 1, 2 or 3." ;;
+    esac
+done
+
+if [ "$ACTION" = "update" ]; then
+
+    log_info "Updating package databases..."
+    sudo pacman -Syy
+    log_ok "Databases updated."
+
+    log_info "Updating packages..."
+    CONFLICTS=$(sudo pacman -Su --print 2>&1 | grep -iE "conflict" || true)
+
+    if [ -n "$CONFLICTS" ]; then
+        log_warn "Conflicts detected:"
+        echo "$CONFLICTS"
+        echo ""
+        read -rp "Remove conflicting packages? [y/N]: " CONFLICT_CHOICE
+        if [[ "$CONFLICT_CHOICE" =~ ^[Yy]$ ]]; then
+            PKGS=$(echo "$CONFLICTS" | grep -oP '^\s*\K[^:]+(?=\s*:)' || true)
+            if [ -n "$PKGS" ]; then
+                log_info "Removing: $PKGS"
+                sudo pacman -Rdd --noconfirm $PKGS || true
+                log_ok "Removed."
+            fi
+        fi
+    fi
+
+    sudo pacman -Su --noconfirm
+    log_ok "Packages updated."
+
+    log_info "Updating AUR..."
+    YAY_OUT=$(yay -Sua --noconfirm 2>&1 || true)
+
+    if echo "$YAY_OUT" | grep -qiE "conflict"; then
+        log_warn "AUR conflicts:"
+        echo "$YAY_OUT" | grep -iE "conflict"
+        echo ""
+        read -rp "Remove conflicting AUR packages? [y/N]: " AUR_CHOICE
+        if [[ "$AUR_CHOICE" =~ ^[Yy]$ ]]; then
+            PKGS=$(echo "$YAY_OUT" | grep -oP '^\s*\K[^:]+(?=\s*:)' || true)
+            if [ -n "$PKGS" ]; then
+                log_info "Removing: $PKGS"
+                yay -Rdd --noconfirm $PKGS || true
+                log_ok "Removed."
+            fi
+            log_info "Retrying AUR update..."
+            yay -Sua --noconfirm
+            log_ok "AUR updated."
+        fi
+    else
+        log_ok "AUR updated."
+    fi
+
+    echo ""
+    echo -e "${GREEN}============================================${NC}"
+    echo -e "${GREEN}  Update completed!${NC}"
+    echo -e "${GREEN}============================================${NC}"
+    echo ""
+
+    read -rp "Reboot now? [y/N]: " REBOOT_CHOICE
+    if [[ "$REBOOT_CHOICE" =~ ^[Yy]$ ]]; then
+        log_info "Rebooting..."
+        sudo reboot
+    else
+        log_info "Reboot skipped. Please reboot manually later."
+        exit 0
+    fi
 fi
 
 log_info "Updating system..."
@@ -92,19 +179,11 @@ echo -e "${GREEN}  Installation completed successfully!${NC}"
 echo -e "${GREEN}============================================${NC}"
 echo ""
 
-while true; do
-    read -rp "Reboot the system now? [y/N]: " REBOOT_CHOICE
-    case "$REBOOT_CHOICE" in
-        [Yy]* )
-            log_info "Rebooting system..."
-            sudo reboot
-            ;;
-        [Nn]* | "" )
-            log_info "Reboot skipped. Please reboot manually later."
-            exit 0
-            ;;
-        * )
-            echo "Please answer 'y' or 'n'."
-            ;;
-    esac
-done
+read -rp "Reboot the system now? [y/N]: " REBOOT_CHOICE
+if [[ "$REBOOT_CHOICE" =~ ^[Yy]$ ]]; then
+    log_info "Rebooting system..."
+    sudo reboot
+else
+    log_info "Reboot skipped. Please reboot manually later."
+    exit 0
+fi
