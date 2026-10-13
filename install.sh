@@ -47,6 +47,9 @@ while true; do
     esac
 done
 
+# ============================================================
+# UPDATE — same as install, but asks before removing conflicts
+# ============================================================
 if [ "$ACTION" = "update" ]; then
 
     log_info "Updating package databases..."
@@ -113,6 +116,9 @@ if [ "$ACTION" = "update" ]; then
     fi
 fi
 
+# ============================================================
+# FULL INSTALL
+# ============================================================
 log_info "Updating system..."
 sudo pacman -Syyu --noconfirm
 log_ok "System updated."
